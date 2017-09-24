@@ -1,4 +1,6 @@
 
+# Color result by tone?
+
 POLITE = [
     "please",
     "thanks",
@@ -14,6 +16,8 @@ IMPOLITE = [
     "retarded",
     "fucking",
     "lmfao",
+    "basdard",
+    "bitch",
 ]
 
 
@@ -60,10 +64,36 @@ VAPID = [
 ]
 
 
+DOMINANT = [
+]
+
+SUBMISSIVE = [
+
+]
+
+FLIRTY = [
+    ";)",
+    "!",
+    "lol",
+    "haha",
+    "xxx",
+    "xox",
+    
+]
+
+PRONOUNS = [
+    "i",
+    "we",
+    "it",
+]
+
 STRONG = [
     "destroy",
-    "destroying",
     "so bad",
+    "amazing",
+    "wonderful",
+    "beautiful",
+
 ]
 
 
@@ -80,6 +110,13 @@ REPLACEMENTS = [
     ("really", ""),
     ("take a look at", "look at"),
     ("in fact", ""),
+    ("here's the thing", ""),
+    ("But one thing is clear.", ""),
+    ("straight up", ""),
+
+    ("imo", ""),
+
+    ("am going to", "will")
 
 ]
 
@@ -96,7 +133,23 @@ PROBABILISTIC = [
 
 ]
 
+
+EXAGERATORS = [
+    "very",
+    "strongly",
+    "massive",
+    "extremely",
+    "really",
+
+]
+
+DELETE_WHOLE_SETTENCE = [
+    "could be",
+    ]
+
+
 QUALIFIERS = [
+    # Split this into diff cats?
     "unfortunately",
     "ever",
     "mostly",
@@ -108,12 +161,31 @@ QUALIFIERS = [
     "too",
     "that",
     "so",
+    "certainly",
+    "just",
+    "simply",
     "really",
     "even",
+    "however",
+    "a little",
+    "feel like",
+    "authorities said",
+    "basically",
 ]
 
+REVERSERS = [
+    "hardly",
 
+    ]
+
+
+def split_sentences(raw_text: str) -> str:
+    DELIMITERS = ['.', ';', '-']
 
 
 def decode(raw_text: str) -> str:
-    pass
+    result = raw_text
+    for q in QUALIFIERS:
+        result = result.replace(q, '')
+
+    return result
